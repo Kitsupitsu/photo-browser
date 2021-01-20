@@ -6,7 +6,9 @@ body {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; 
+    break-inside: avoid;
+    height: 100vh;
 }
 
 #galleryImage {
@@ -16,5 +18,5 @@ body {
 }
 
 #galleryImage img {
-    max-width: 18vw;
+    max-height: 30vh;
 }
