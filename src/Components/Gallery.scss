@@ -1,0 +1,20 @@
+body {
+    background-color: black;
+}
+
+.galleryGrid {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#galleryImage {
+    height: auto;
+    padding: 2px;
+    display: flex;
+}
+
+#galleryImage img {
+    max-width: 18vw;
+}

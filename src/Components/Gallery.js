@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Gallery.scss';
 
 class Gallery extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class Gallery extends Component {
     }
 
     componentDidMount() {
-        fetch('http://jsonplaceholder.typicode.com/photos')
+        fetch('https://picsum.photos/v2/list')
             .then(response => response.json())
             .then(
                 (result) => {
@@ -27,12 +28,16 @@ class Gallery extends Component {
     render() {
         const { error, loaded, photos } = this.state;
         if (error) {
-            <p>{error}</p>
+            <div id="errorPage">
+
+            </div>
         } else if (loaded) {
             return (
-                <div id="test">
+                <div class="galleryGrid">
                     {photos.map(photo => (
-                        <img key={photo.id} src={photo.thumbnailUrl}/>
+                        <div id="galleryImage">
+                        <img key={photo.id} src={photo.download_url}/>
+                        </div>
                     ))}
                 </div>
             )
