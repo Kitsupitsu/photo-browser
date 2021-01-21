@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Gallery.scss';
+import { BrowserRouter as Router, NavLink, Route } from "react-router-dom";
+import Photo from './Photo';
 
 class Gallery extends Component {
     constructor(props) {
@@ -12,7 +14,7 @@ class Gallery extends Component {
     }
 
     componentDidMount() {
-        fetch('https://picsum.photos/v2/list')
+        fetch('http://jsonplaceholder.typicode.com/photos')
             .then(response => response.json())
             .then(
                 (result) => {
@@ -28,18 +30,29 @@ class Gallery extends Component {
     render() {
         const { error, loaded, photos } = this.state;
         if (error) {
-            <div id="errorPage">
-
-            </div>
+            console.log(error)
+            return (
+                <div id="errorPage">
+                    <h1>Error!</h1>
+                </div>
+            )
         } else if (loaded) {
             return (
-                <div class="galleryGrid">
-                    {photos.map(photo => (
-                        <div id="galleryImage">
-                        <img key={photo.id} src={photo.download_url}/>
+                <div>
+                    <Router>
+                        <div className="galleryGrid">
+                            {photos.map(photo => (
+                                <div id="galleryImage" key={photo.id}>
+                                    <NavLink to={`/photos/${photo.id}`} id={photo.id}>
+                                        <img src={photo.thumbnailUrl} />
+                                    </NavLink>
+                                    <Route path={`/photos/${photo.id}`} render={(props) => <Photo {...props} id={photo.id} />} />
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    </Router>
                 </div>
+
             )
         } else {
             return (
