@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Gallery from './Components/Gallery';
 import Photo from './Components/Photo';
-import { BrowserRouter as Router, NavLink, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        fetch('https://picsum.photos/v2/list')
+        fetch('http://jsonplaceholder.typicode.com/photos')
             .then(response => response.json())
             .then(
                 (result) => {
@@ -26,8 +26,9 @@ class App extends Component {
             );
     }
 
+
     render() {
-            const { error, loaded, photos } = this.state;
+        const { error, loaded, photos } = this.state;
         if (error) {
             console.log(error)
             return (
@@ -39,11 +40,10 @@ class App extends Component {
             return (
                 <div>
                     <Router>
-                        <Route path="/" component={ Gallery } pictures={ this.state.photos }/>
+                        <Route path="/" render={(props) => <Gallery {...props} photos={photos} />} exact />
+                        <Route path="/:id" render={(props) => <Photo {...props} />}/>
                     </Router>
-
                 </div>
-
             )
         } else {
             return (

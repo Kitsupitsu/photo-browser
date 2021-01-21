@@ -1,4 +1,5 @@
-import react, { Component } from 'react';
+import React, { Component } from 'react';
+import './Photo.scss';
 
 class Photo extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class Photo extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://jsonplaceholder.typicode.com/photos/${this.props.id}`)
+        fetch(`http://jsonplaceholder.typicode.com/photos/${this.props.match.params.id}`)
             .then(response => response.json())
             .then(
                 (result) => {
@@ -26,9 +27,7 @@ class Photo extends Component {
 
     render() {
         const { error, loaded, photo } = this.state;
-
-        if (loaded && photo) {
-            console.log(photo);
+        if (loaded && !error) {
             return (
                 <div>
                     <img src={photo.url} />
