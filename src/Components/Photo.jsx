@@ -27,13 +27,13 @@ const Photo = (props) => {
             <div>
                 <BackButton history={props.history} />
                 <div className="container">
-                    <img id="photo" src={photo.url} />
+                    <img id="photo" src={photo.url} aria-label={"Picture with the id " + photo.id}/>
                     <div id="photoData">
-                        <h2>Author:</h2>
-                        <p>{photo.author}</p>
-                        <h2>Photo id:</h2>
+                        <h1>Album:</h1>
+                        <p>{photo.albumId}</p>
+                        <h1>Photo id:</h1>
                         <p>{photo.id}</p>
-                        <h2>Title:</h2>
+                        <h1>Title:</h1>
                         <p>{photo.title}</p>
                     </div>
                 </div>
@@ -47,7 +47,7 @@ const Photo = (props) => {
 function BackButton(props) {
     return (
         <div className="closeButton">
-            <button onClick={() => props.history.push('/')}><img src={cancel} /></button>
+            <button onClick={() => props.history.push('/')}><img src={cancel} aria-label={"Move backwards to the front page"} /></button>
         </div>
     )
 }
