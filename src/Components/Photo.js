@@ -53,7 +53,7 @@ class Photo extends Component {
     backButton() {
         return (
             <div className="closeButton">
-                <img src={cancel} />
+                <button onClick={() => this.props.history.push('/')}><img src={cancel} /></button>
             </div>
         )
     }

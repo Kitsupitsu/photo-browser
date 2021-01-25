@@ -41,7 +41,7 @@ class App extends Component {
                 <div>
                     <Router>
                         <Route path="/" render={(props) => <Gallery {...props} photos={photos} />} exact />
-                        <Route path="/:id" render={(props) => <Photo {...props} />}/>
+                        <Route path="/photo/:id" render={(props) => <Photo {...props} />}/>
                     </Router>
                 </div>
             )

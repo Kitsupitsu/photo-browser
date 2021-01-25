@@ -18,10 +18,18 @@ body {
 
 #photo {
     max-height: 70vh;
+    border-style: groove;
+    border-width: 1vh;
+    border-color: grey;
 }
 
 .closeButton {
     padding-left: 1vw;
+}
+
+.closeButton button {
+    background-color: inherit;
+    border: none;
 }
 
 .closeButton img {

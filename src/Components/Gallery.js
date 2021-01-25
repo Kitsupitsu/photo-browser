@@ -9,7 +9,7 @@ class Gallery extends Component {
             <div className="galleryGrid">
                 {photos.map(photo => (
                     <div id="galleryImage" key={photo.id}>
-                        <Link to={`/${photo.id}`}>
+                        <Link to={`/photo/${photo.id}`}>
                             <img src={photo.download_url} />
                         </Link>
                     </div>
