@@ -13,7 +13,7 @@ class Photo extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://jsonplaceholder.typicode.com/photos/${this.props.match.params.id}`)
+        fetch(`https://picsum.photos/id/${this.props.match.params.id}/info`)
             .then(response => response.json())
             .then(
                 (result) => {
@@ -33,10 +33,10 @@ class Photo extends Component {
                 <div>
                     {this.backButton()};
                     <div className="container">
-                        <img id="photo" src={photo.url} />
+                        <img id="photo" src={photo.download_url} />
                         <div id="photoData">
-                            <h2>Album:</h2>
-                            <p>{photo.albumId}</p>
+                            <h2>Author:</h2>
+                            <p>{photo.author}</p>
                             <h2>Photo id:</h2>
                             <p>{photo.id}</p>
                             <h2>Title:</h2>

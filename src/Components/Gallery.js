@@ -10,7 +10,7 @@ class Gallery extends Component {
                 {photos.map(photo => (
                     <div id="galleryImage" key={photo.id}>
                         <Link to={`/${photo.id}`}>
-                            <img src={photo.thumbnailUrl} />
+                            <img src={photo.download_url} />
                         </Link>
                     </div>
                 ))}

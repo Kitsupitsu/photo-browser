@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Gallery from './Components/Gallery';
 import Photo from './Components/Photo';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, BrowserHistory } from "react-router-dom";
 
 class App extends Component {
     constructor(props) {
@@ -9,12 +9,13 @@ class App extends Component {
         this.state = {
             error: null,
             loaded: false,
-            photos: []
+            photos: [],
+            page: 1
         };
     }
 
     componentDidMount() {
-        fetch('http://jsonplaceholder.typicode.com/photos')
+        fetch(`https://picsum.photos/v2/list?_page=${this.state.page}&_limit=60`)
             .then(response => response.json())
             .then(
                 (result) => {
@@ -25,7 +26,6 @@ class App extends Component {
                 }
             );
     }
-
 
     render() {
         const { error, loaded, photos } = this.state;
