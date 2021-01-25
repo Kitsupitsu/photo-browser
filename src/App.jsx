@@ -1,5 +1,5 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { useState, useEffect, lazy, Suspense, Fragment } from 'react';
+import { BrowserRouter as Router, Route, useLocation, withRouter } from "react-router-dom";
 import Pagination from '@material-ui/lab/Pagination';
 
 const Gallery = lazy(() => import('./Components/Gallery'));
@@ -12,7 +12,7 @@ const App = () => {
     const [loaded, setLoaded] = useState(false);
     const [page, setPage] = useState(1);
     const [photos, setPhotos] = useState([]);
-    const [maxPages, setMaxPages ] = useState(1);
+    const [maxPages, setMaxPages] = useState(1);
 
     useEffect(page => {
         loadPhotos(page);
@@ -27,7 +27,7 @@ const App = () => {
                     }
                 }
                 return response.json()
-            } )
+            })
             .then(
                 (result) => {
                     setPhotos([...result]);
@@ -45,6 +45,15 @@ const App = () => {
         loadPhotos(page);
     }
 
+    const Head = () => {
+        return (
+            <>
+                <Header />
+                <Pagination id="pagination" count={maxPages} onChange={handlePageChange} variant="outlined" color="standard" />
+            </>
+        )
+    }
+
     if (error) {
         console.log(error)
         return (
@@ -55,17 +64,14 @@ const App = () => {
     } else if (loaded) {
         return (
             <Suspense fallback={<h1>Loading</h1>}>
-                <header>
-                    <Header />
-                    <Pagination id="pagination" count={maxPages} onChange={handlePageChange} variant="outlined" color="standard"/>
-                </header>
                 <Router>
                     <main>
-                        <Route path="/" render={(props) => <Gallery {...props} photos={photos}/>} exact />
+                        <Route path="/" render={(props) => <Head />} exact />
+                        <Route path="/" render={(props) => <Gallery {...props} photos={photos} />} exact />
                         <Route path="/photo/:id" render={(props) => <Photo {...props} />} />
                     </main>
                 </Router>
-                
+
             </Suspense>
         )
     } else {
@@ -77,4 +83,4 @@ const App = () => {
 
 
 
-export default App;
+export default withRouter(App);
