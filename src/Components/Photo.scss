@@ -1,6 +1,25 @@
+body {
+    background-color: black;
+}
+
 .container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: 0 0 0 0.6;    
+    display: flex;
+    justify-content: center;
+}
+
+.container div {
+    padding: 5vh;
+}
+
+#photoData {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.closeButton {
+    padding-left: 1vw;
+}
+
+.closeButton img {
+    height: 2.5rem;
 }
