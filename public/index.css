@@ -1,0 +1,12 @@
+body, ul {
+    margin: 0; 
+    display: flex;
+}
+
+#root {
+    position: relative;
+}
+
+.MuiPaginationItem-root	{
+    color: white;
+}

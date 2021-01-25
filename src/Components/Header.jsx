@@ -1,12 +1,14 @@
 import React from 'react';
+import './Header.scss'
 
 const Header = (props) => {
     return(
         <div className="header">
-            <h1>This is a header</h1>
+            <div>
+            <h1>Photo Gallery</h1>
+            </div>
         </div>
     )
-
 }
 
 export default Header;

@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 
 const Gallery = (props) => {
     const photos = props.photos
+
     return (
+        <>
         <div className="galleryGrid">
             {photos.map(photo => (
                 <div id={"galleryImage-" + photo.id} key={photo.id} aria-label={"Move to photo" + photo.id}>
@@ -14,6 +16,8 @@ const Gallery = (props) => {
                 </div>
             ))}
         </div>
+        
+        </>
     )
 }
 

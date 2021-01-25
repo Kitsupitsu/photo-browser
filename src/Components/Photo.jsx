@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import './Photo.scss';
 import cancel from '../Assets/cancel.svg';
 
-const Photo = (props) => {
+const Photo = memo((props) => {
     const [error, setError] = useState(null);
     const [loaded, setLoaded] = useState(false);
     const [photo, setPhoto] = useState([]);
@@ -42,7 +42,7 @@ const Photo = (props) => {
     } else {
         return <p>Error</p>
     }
-}
+})
 
 function BackButton(props) {
     return (
