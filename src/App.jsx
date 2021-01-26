@@ -1,10 +1,10 @@
-import React, { useState, useEffect, lazy, Suspense, Fragment } from 'react';
-import { BrowserRouter as Router, Route, useLocation, withRouter } from "react-router-dom";
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Pagination from '@material-ui/lab/Pagination';
+import './App.scss';
 
 const Gallery = lazy(() => import('./Components/Gallery'));
 const Photo = lazy(() => import('./Components/Photo'));
-const Header = lazy(() => import('./Components/Header'));
 
 const App = () => {
     const limit = 120;
@@ -45,15 +45,6 @@ const App = () => {
         loadPhotos(page);
     }
 
-    const Head = () => {
-        return (
-            <>
-                <Header />
-                <Pagination id="pagination" count={maxPages} onChange={handlePageChange} variant="outlined" color="standard" />
-            </>
-        )
-    }
-
     if (error) {
         console.log(error)
         return (
@@ -66,12 +57,11 @@ const App = () => {
             <Suspense fallback={<h1>Loading</h1>}>
                 <Router>
                     <main>
-                        <Route path="/" render={(props) => <Head />} exact />
+                        <Route path="/" render={(props) => <Head {...props} maxPages={maxPages} pageChange={handlePageChange} />} exact />
                         <Route path="/" render={(props) => <Gallery {...props} photos={photos} />} exact />
-                        <Route path="/photo/:id" render={(props) => <Photo {...props} />} />
                     </main>
+                    <Route path="/photo/:id" render={(props) => <Photo {...props} />} />
                 </Router>
-
             </Suspense>
         )
     } else {
@@ -81,6 +71,16 @@ const App = () => {
     }
 }
 
+const Head = (props) => {
+    return (
+        <>
+            <div className="header">
+                <h1>Photo Gallery</h1>
+                <Pagination id="pagination" count={props.maxPages} onChange={props.pageChange} />
+            </div>
+        </>
+    )
+}
 
 
-export default withRouter(App);
+export default App;

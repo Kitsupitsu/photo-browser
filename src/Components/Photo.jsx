@@ -22,7 +22,7 @@ const Photo = memo((props) => {
             );
     }, [props.match.params.id]);
 
-    if (loaded && !error) {
+    if (loaded) {
         return (
             <div>
                 <BackButton history={props.history} />
@@ -39,8 +39,11 @@ const Photo = memo((props) => {
                 </div>
             </div>
         )
+    } else if (error) {
+        console.log(error);
+        return (<p>Error</p>)
     } else {
-        return <p>Error</p>
+        return <p>Loading...</p>
     }
 })
 

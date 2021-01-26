@@ -1,5 +1,27 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('/Assets/Roboto-Regular.ttf');
+}
+
+body {
+    background-color: #2A2A2A;
+}
+
 main {
     display: flex;
+    flex-flow: column;
+    align-items: center;
+    color: white;
+}
+
+.header {
+    margin: 10px;
+}
+
+main h1 {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    margin: 0;
 }
 
 #pagination {

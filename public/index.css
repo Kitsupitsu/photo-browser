@@ -1,12 +1,7 @@
-body, ul {
-    margin: 0; 
-    display: flex;
+body {
+    margin: 0;
 }
 
 #root {
-    position: relative;
-}
-
-.MuiPaginationItem-root	{
-    color: white;
+    top: 0;
 }
