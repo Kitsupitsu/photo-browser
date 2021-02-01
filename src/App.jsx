@@ -42,6 +42,7 @@ const App = () => {
 
     const handlePageChange = (event, value) => {
         setPage(value);
+        setLoaded(false);
         loadPhotos(page);
     }
 
@@ -57,7 +58,7 @@ const App = () => {
             <Suspense fallback={<h1>Loading</h1>}>
                 <Router>
                     <main>
-                        <Route path="/" render={(props) => <Head {...props} maxPages={maxPages} pageChange={handlePageChange} />} exact />
+                        <Route path="/" render={(props) => <Head {...props} maxPages={maxPages} page={page} pageChange={handlePageChange} />} exact />
                         <Route path="/" render={(props) => <Gallery {...props} photos={photos} />} exact />
                     </main>
                     <Route path="/photo/:id" render={(props) => <Photo {...props} />} />
@@ -73,12 +74,10 @@ const App = () => {
 
 const Head = (props) => {
     return (
-        <>
-            <div className="header">
-                <h1>Photo Gallery</h1>
-                <Pagination id="pagination" count={props.maxPages} onChange={props.pageChange} />
-            </div>
-        </>
+        <div className="header">
+            <h1>Photo Gallery</h1>
+            <Pagination id="pagination" page={props.page} count={props.maxPages} onChange={props.pageChange} />
+        </div>
     )
 }
 

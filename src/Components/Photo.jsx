@@ -27,7 +27,7 @@ const Photo = memo((props) => {
             <div>
                 <BackButton history={props.history} />
                 <div className="container">
-                    <img id="photo" src={photo.url} aria-label={"Picture with the id " + photo.id}/>
+                    <img id="photo" src={photo.url} aria-label={"Picture with the id " + photo.id} />
                     <div id="photoData">
                         <h1>Album:</h1>
                         <p>{photo.albumId}</p>
