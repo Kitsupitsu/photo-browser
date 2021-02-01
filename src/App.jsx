@@ -16,7 +16,7 @@ const App = () => {
 
     useEffect(page => {
         loadPhotos(page);
-    });
+    }, [page]);
 
     const loadPhotos = () => {
         fetch(`https://jsonplaceholder.typicode.com/photos?_page=${page}&_limit=${limit}`)
@@ -76,6 +76,7 @@ const Head = (props) => {
     return (
         <div className="header">
             <h1>Photo Gallery</h1>
+            
             <Pagination id="pagination" page={props.page} count={props.maxPages} onChange={props.pageChange} />
         </div>
     )
