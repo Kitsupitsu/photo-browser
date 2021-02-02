@@ -2,6 +2,7 @@ import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Pagination from '@material-ui/lab/Pagination';
 import './App.scss';
+import Loading from './Components/Loading';
 
 const Gallery = lazy(() => import('./Components/Gallery'));
 const Photo = lazy(() => import('./Components/Photo'));
@@ -67,7 +68,7 @@ const App = () => {
         )
     } else {
         return (
-            <h1>Loading</h1>
+            <Loading/>
         )
     }
 }
@@ -76,7 +77,6 @@ const Head = (props) => {
     return (
         <div className="header">
             <h1>Photo Gallery</h1>
-            
             <Pagination id="pagination" page={props.page} count={props.maxPages} onChange={props.pageChange} />
         </div>
     )

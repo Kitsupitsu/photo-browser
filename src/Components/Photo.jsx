@@ -1,6 +1,7 @@
 import React, { useState, useEffect, memo } from 'react';
 import './Photo.scss';
 import cancel from '../Assets/cancel.svg';
+import Loading from './Loading';
 
 const Photo = memo((props) => {
     const [error, setError] = useState(null);
@@ -43,7 +44,7 @@ const Photo = memo((props) => {
         console.log(error);
         return (<p>Error</p>)
     } else {
-        return <p>Loading...</p>
+        return <Loading/>
     }
 })
 
